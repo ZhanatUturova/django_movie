@@ -1,5 +1,7 @@
 from django.db import models
+from django.urls import reverse
 from datetime import date
+
 
 # Create your models here.
 class Category(models.Model):
@@ -30,6 +32,7 @@ class Actor(models.Model):
         verbose_name = 'Актеры и режиссеры'
         verbose_name_plural = 'Актеры и режиссеры'
 
+
 class Genre(models.Model):
     """Жанры"""
     name = models.CharField('Имя', max_length=100)
@@ -42,6 +45,7 @@ class Genre(models.Model):
     class Meta:
         verbose_name = 'Жанр'
         verbose_name_plural = 'Жанры'
+
 
 class Movie(models.Model):
     """Фильм"""
@@ -68,9 +72,11 @@ class Movie(models.Model):
     url = models.SlugField(max_length=130, unique=True)
     draft = models.BooleanField("Черновик", default=False)
 
-
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('movie_detail', kwargs={'slug': self.url})
 
     class Meta:
         verbose_name = 'Фильм'
@@ -99,10 +105,10 @@ class RatingStar(models.Model):
     def __str__(self):
         return self.value
 
-
     class Meta:
         verbose_name = 'Звезда рейтинга'
         verbose_name_plural = 'Звезды рейтинга'
+
 
 class Rating(models.Model):
     """Рейтинг"""
@@ -110,10 +116,8 @@ class Rating(models.Model):
     star = models.ForeignKey(RatingStar, on_delete=models.CASCADE, verbose_name='звезда')
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE, verbose_name='фильм')
 
-
     def __str__(self):
         return f'{self.star} - {self.movie}'
-
 
     class Meta:
         verbose_name = 'Рейтинг'
@@ -132,7 +136,6 @@ class Reviews(models.Model):
 
     def __str__(self):
         return f'{self.name} - {self.movie}'
-
 
     class Meta:
         verbose_name = 'Отзыв'
