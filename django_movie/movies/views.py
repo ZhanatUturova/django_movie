@@ -2,15 +2,20 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic import ListView, DetailView
 
-from .models import Movie
+from .models import Movie, Category
 from .forms import ReviewForm
 # Create your views here.
 
 class MoviesView(ListView):
     """Список фильмов"""
-
     model = Movie
     queryset = Movie.objects.filter(draft=False)
+
+    # вместо этой функции мы написали templatetag -> movie_tag
+    # def get_context_data(self, *args, **kwargs):
+    #     context = super().get_context_data(*args, **kwargs)
+    #     context['categories'] = Category.objects.all()
+    #     return context
 
 
 class MovieDetailView(DetailView):
