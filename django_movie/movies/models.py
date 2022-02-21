@@ -32,6 +32,9 @@ class Actor(models.Model):
         verbose_name = 'Актеры и режиссеры'
         verbose_name_plural = 'Актеры и режиссеры'
 
+    def get_absolute_url(self):
+        return reverse('actor_detail', kwargs={'slug': self.name})
+
 
 class Genre(models.Model):
     """Жанры"""
