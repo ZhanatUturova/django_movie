@@ -7,6 +7,7 @@
         <button class="btn1 btn"><span class="fa fa-search" aria-hidden="true"></span></button>
     </form>
 </div>
+{% comment %}
 <form action="{% url 'filter' %}" method="get">
     <div class="left-side my-4">
         <h3 class="sear-head editContent">Жанры</h3>
@@ -32,7 +33,33 @@
     </div>
     <button type="submit">Найти</button>
 </form>
-<!-- //discounts -->
+{% endcomment %}
+
+<form action="{% url 'json_filter' %}" method="get" name="filter">
+    <div class="left-side my-4">
+        <h3 class="sear-head editContent">Жанры</h3>
+        <ul class="w3layouts-box-list">
+            {% for genre in view.get_genres %}
+            <li class="editContent">
+                <input type="checkbox" class="checked" name="genre" value="{{ genre.id }}">
+                <span class="span editContent">{{ genre.name }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="left-side">
+        <h3 class="sear-head editContent">Год</h3>
+        <ul class="w3layouts-box-list">
+            {% for movie in view.get_years %}
+            <li class="editContent">
+                <input type="checkbox" class="checked" name="year" value="{{ movie.year }}">
+                <span class="span editContent">{{ movie.year }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <button type="submit">Найти</button>
+</form>
 <!-- reviews -->
 <div class="customer-rev left-side my-4">
     <h3 class="sear-head editContent">Рейтинг</h3>
@@ -91,3 +118,6 @@
 </div>
 
 {% get_last_movies count=3 %}
+
+
+
