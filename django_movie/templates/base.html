@@ -17,18 +17,17 @@
     <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet">
     <!-- //font-awesome-icons -->
     <!-- /Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,100;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700"
           rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,100;1,300;1,400&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900"
+          rel="stylesheet">
     <!-- //Fonts -->
 </head>
-
 <body>
-<div id="page" class="page"><!-- mian-content -->
-    <div class="main-banner bg {% block header %} {% endblock header %}" id="home">
+<div id="page" class="page">
+    <div class="main-banner bg {% block header %}  {% endblock header %}" id="home">
         {% include 'include/header.html' %}
     </div>
-
     <ol class="breadcrumb editContent">
         <li class="breadcrumb-item">
             <a href="index.html" class="editContent">Home</a>
@@ -37,13 +36,10 @@
     </ol>
     {% block content %}
 
-
     {% endblock content %}
-
     {% include 'include/footer.html' %}
 </div>
-
 <script src="{% static 'js/scripts.js' %}"></script>
-<script src="http://twitter.github.io/hogan.js/builds/3.0.1/hogan-3.0.1.js"></script>
+<script src="http://twitter.github.com/hogan.js/builds/3.0.1/hogan-3.0.1.js"></script>
 </body>
 </html>
