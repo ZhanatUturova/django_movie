@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.flatpages',
     'ckeditor',
     'ckeditor_uploader',
     'movies',
@@ -50,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 ]
 
 ROOT_URLCONF = 'django_movie.urls'
@@ -78,7 +81,7 @@ WSGI_APPLICATION = 'django_movie.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': str(os.path.join(BASE_DIR, "db.sqlite3"))
     }
 }
 
@@ -199,3 +202,5 @@ RECAPTCHA_PUBLIC_KEY = '6Le0BjkfAAAAAGq5ziBvP2zWoMxv8rV8jkmZnk-M'
 RECAPTCHA_PRIVATE_KEY = '6Le0BjkfAAAAAB0KFLJEt-ZNIKP1BViZdX1708CK'
 RECAPTCHA_DEFAULT_ACTION = 'generic'
 RECAPTCHA_SCORE_THRESHOLD = 0.5
+
+SITE_ID = 1
